@@ -1,13 +1,12 @@
-from src.Models.rgbio import frame, connection
+from src.Models.rgbio import frame, led
 import time
-f = frame(12, 245, 123)
-ser = connection()
+f = frame(frame.TURN_ON, data=[13, 17, 124])
+ser = led()
 data = f.as_bytes()
-st_ = time.time_ns()
-
+print(data)
 
 while True:
     ser.handle.write(data)
     if ser.handle.in_waiting > 0:
-        print("")
+        print(ser.handle.readline())
 
