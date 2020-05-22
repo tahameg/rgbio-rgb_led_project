@@ -108,13 +108,14 @@ class led:
 
     #TODO heartbeat handshake
 
+
     def turn_on(self):
         f = frame(frame.TURN_ON)
-        self.handle.write(f.data_as_bytes)
+        self.handle.write(f.as_bytes())
 
     def turn_off(self):
         f = frame(frame.TURN_OFF)
-        self.handle.write(f.data_as_bytes)
+        self.handle.write(f.as_bytes())
 
     def fire_with_color(self, color):
         """
@@ -122,17 +123,21 @@ class led:
         :param color: "red", "green", "blue" or an rgb value in 3 tuple format
         :return:
         """
-        rgb = 0, 0, 0
         if color == "red":
-            rgb = 255, 0, 0
+            rgb = (255, 0, 0)
         elif color == "green":
-            rgb = 0, 255, 0
+            rgb = (0, 255, 0)
         elif color == "blue":
-            rgb = 0, 0, 255
+            rgb = (0, 0, 255)
         else:
             rgb = color
 
+        f = frame(frame.FIRE, [rgb[0], rgb[1], rgb[2]])
+        self.handle.write(f.as_bytes())
 
+    #TODO LOG system
+    #TODO changing name conventions (like fire_with_color)
+    #TODO fixing voltage requlation
 
 
 
