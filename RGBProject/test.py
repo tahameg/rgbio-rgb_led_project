@@ -1,18 +1,18 @@
-from src.Models.rgbio import frame, led
-import time
-ser = led()
-count = 0
-print(frame(frame.FIRE, [123, 123, 123]).as_bytes())
+from src.lib.ssstuff import dominant_color
+from src.Models.rgbio import led
+dominant_color.resolution = (50,50)
+l = led()
+l.turn_on()
 while True:
-    ser.fire_with_color("red")
-    count = 0
-
-    if ser.handle.in_waiting > 0:
-        print(ser.handle.readline())
-
-
-
-#----
-from src.Models.rgbio import frame, led
-import time
-f = frame(frame.TURN_ON, data=[123, 123, 123])
+    if l.handle.in_waiting > 0:
+        a =  l.handle.readline()
+        print(a)
+        if a == b'ups!\r\n':
+            l.turn_on()
+    try:
+        dom_color = dominant_color.get_dominant_color_from_monitor(monitor=1, img_show=False, breaks=True)
+        l.fire(dom_color)
+        print(dom_color)
+    except Exception as i:
+        print(i.args)
+        break

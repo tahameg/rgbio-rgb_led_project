@@ -85,7 +85,7 @@ void setmode(byte *data, int data_len){
       if(isReady){
         setvalue( uint8_t(data[2]), uint8_t(data[3]), uint8_t(data[4]));
       }else{
-        Serial.println("Device was not initialized!");
+        Serial.println("ups!");
       }
     break;
   }

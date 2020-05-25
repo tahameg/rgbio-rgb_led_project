@@ -88,6 +88,11 @@ class frame:
 import serial
 
 class led:
+    """
+     Represents a RGBio device. Device is connected via specified serial port. The device must be turned on before being ready for the use
+     :param port: is a string specifying which port the arduino is connected to.(Default is "COM10")
+     :param baudrate: baudrate of the serial connection.(Default is 9600)
+    """
     port = "COM10"
     baudrate = 9600
 
@@ -117,7 +122,7 @@ class led:
         f = frame(frame.TURN_OFF)
         self.handle.write(f.as_bytes())
 
-    def fire_with_color(self, color):
+    def fire(self, color):
         """
         fires led in specified color
         :param color: "red", "green", "blue" or an rgb value in 3 tuple format
@@ -136,8 +141,8 @@ class led:
         self.handle.write(f.as_bytes())
 
     #TODO LOG system
-    #TODO changing name conventions (like fire_with_color)
     #TODO fixing voltage requlation
+    #TODO connection tracking
 
 
 
