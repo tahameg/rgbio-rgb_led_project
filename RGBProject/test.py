@@ -1,6 +1,7 @@
 from src.lib.ssstuff import dominant_color
 from src.Models.rgbio import led
 dominant_color.resolution = (50,50)
+led.port ="COM5"
 l = led()
 l.turn_on()
 while True:
