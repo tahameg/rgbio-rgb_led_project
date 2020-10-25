@@ -11,7 +11,7 @@ while True:
         if a == b'ups!\r\n':
             l.turn_on()
     try:
-        dom_color = dominant_color.get_dominant_color_from_monitor(monitor=1, img_show=False, breaks=True)
+        dom_color = dominant_color.get_dominant_color_from_monitor(monitor=0, img_show=False, breaks=True)
         l.fire(dom_color)
         print(dom_color)
     except Exception as i:

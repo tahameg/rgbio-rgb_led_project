@@ -1,7 +1,7 @@
 from src.Models.rgbio import led
 import time
 
-led.port = "COM5"
+led.port = "COM6"
 l = led()
 l.turn_on()
 
